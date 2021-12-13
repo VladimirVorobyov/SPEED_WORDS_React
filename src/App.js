@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './App.scss';
+import {Welcome} from './components/Welcome';
+import {Game} from './components/Game';
+import { Result } from './components/Result';
 
 function App() {
+  const [route, setRoute] = React.useState('welcome');
+  const [count,setCount] = React.useState(0);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {route ==='welcome' && <Welcome onRoute={setRoute}/>}
+      {route ==='game' && <Game onRoute={setRoute} count={count} setCount={setCount}/>}
+      {route ==='result' && <Result count={count} setCount={setCount} onRoute={setRoute}/>}
     </div>
   );
 }
